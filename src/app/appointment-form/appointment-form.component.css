@@ -1,0 +1,23 @@
+/* appointment-form.component.css */
+
+/* Styling for the form fields */
+.form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  /* Styling for the button */
+  .submit-button {
+    margin-top: 10px;
+  }
+  
+  /* Optional: Adjust button appearance */
+  .submit-button.mat-raised-button {
+    background-color: #1976d2; /* Blue color */
+    color: white; /* Text color */
+  }
+  
+  .submit-button.mat-raised-button:hover {
+    background-color: #1565c0; /* Darker shade of blue on hover */
+  }
+  

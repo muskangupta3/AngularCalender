@@ -1,0 +1,25 @@
+<!-- src/app/appointment-form/appointment-form.component.html -->
+<form #appointmentForm="ngForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput name="title" [(ngModel)]="appointment.title" required>
+    <mat-error *ngIf="appointmentForm.controls['title']?.errors?.['required'] && appointmentForm.controls['title']?.touched">
+      Title is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="picker" name="date" [(ngModel)]="appointment.date" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="appointmentForm.controls['date']?.errors?.['required'] && appointmentForm.controls['date']?.touched">
+      Date is required
+    </mat-error>
+  </mat-form-field>
+
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="appointmentForm.invalid">
+    Add Appointment
+  </button>
+</form>
