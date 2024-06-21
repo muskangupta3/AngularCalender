@@ -16,7 +16,6 @@ export class CalendarComponent {
 
   addAppointment(appointment: Appointment) {
     this.appointments.push(appointment);
-    console.log(this.appointments)
   }
 
   deleteAppointment(appointment: Appointment) {
