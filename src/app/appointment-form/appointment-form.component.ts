@@ -1,24 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Appointment } from '../appointment.model';
-import { AppointmentService } from '../appointment.service';
 
 @Component({
   selector: 'app-appointment-form',
-  standalone: false,
   templateUrl: './appointment-form.component.html',
-  styleUrl: './appointment-form.component.css'
+  styleUrls: ['./appointment-form.component.css']
 })
 export class AppointmentFormComponent {
-  appointment: Appointment = {
-    title: '',
-    date: ''
-  };
+  @Output() addAppointment = new EventEmitter<Appointment>();
 
-constructor(private appointmentService: AppointmentService) { }
+  appointmentForm: FormGroup;
 
-  onSubmit(): void {
-    this.appointmentService.addAppointment(this.appointment);
-    console.log('Form submitted:', this.appointment);
-    this.appointment = { title: '', date: ''}; // Reset form
+  constructor(private formBuilder: FormBuilder) {
+    this.appointmentForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      date: ['', Validators.required]
+    });
+  }
+
+  onSubmit() {
+    if (this.appointmentForm.valid) {
+      this.addAppointment.emit(this.appointmentForm.value);
+      this.appointmentForm.reset(' ');
+    }
   }
 }

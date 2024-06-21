@@ -1,19 +1,21 @@
-/* calendar.component.css */
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
 .calendar {
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.appointment {
+.calendar-appointment {
   border: 1px solid #ccc;
   padding: 10px;
-  margin: 5px;
-  cursor: move;
-  display: inline-block;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar-appointment div {
+  margin-right: 10px;
+}
+
+.calendar-appointment button {
+  margin-left: 10px;
 }

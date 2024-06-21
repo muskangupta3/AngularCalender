@@ -1,25 +1,23 @@
-<!-- src/app/appointment-form/appointment-form.component.html -->
-<form #appointmentForm="ngForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>
-    <input matInput name="title" [(ngModel)]="appointment.title" required>
-    <mat-error *ngIf="appointmentForm.controls['title']?.errors?.['required'] && appointmentForm.controls['title']?.touched">
+    <input matInput formControlName="title" placeholder="Enter appointment title" required>
+    <mat-error *ngIf="appointmentForm.controls['title'].invalid && (appointmentForm.controls['title'].dirty || appointmentForm.controls['title'].touched)">
       Title is required
     </mat-error>
   </mat-form-field>
-
+<br>
   <mat-form-field appearance="fill">
     <mat-label>Date</mat-label>
-    <input matInput [matDatepicker]="picker" name="date" [(ngModel)]="appointment.date" required>
+    <input matInput [matDatepicker]="picker" formControlName="date" required>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-    <mat-error *ngIf="appointmentForm.controls['date']?.errors?.['required'] && appointmentForm.controls['date']?.touched">
+    <mat-error *ngIf="appointmentForm.controls['date'].invalid && (appointmentForm.controls['date'].dirty || appointmentForm.controls['date'].touched)">
       Date is required
     </mat-error>
   </mat-form-field>
-
-
-  <button mat-raised-button color="primary" type="submit" [disabled]="appointmentForm.invalid">
-    Add Appointment
-  </button>
+<br>
+  <button mat-raised-button color="primary" type="submit" [disabled]="appointmentForm.invalid">Add Appointment</button>
+  <br>
+  <br>
 </form>
